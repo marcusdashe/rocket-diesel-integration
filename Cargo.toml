@@ -1,0 +1,18 @@
+[package]
+name = "mergerd"
+version = "0.1.0"
+edition = "2021"
+authors = ["Marcus Dashe <marcusdashe.developer@gmail.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+diesel = { version = "2.0.0", features = ["postgres"] }
+rocket = { version = "0.5.0-rc.2", features = ["json"] }
+rocket_cors = "0.5.2"
+jsonwebtoken = "8.1.1"
+rand = "0.8.5"
+rocket_dyn_templates = { version = "0.1.0-rc.2", features = ["tera"] }
+dotenvy = "0.15"
+serde = "1.0.145"
+
