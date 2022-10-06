@@ -1,13 +1,16 @@
+#![allow(unused)]
 
 use rocket::serde::json::Json;
 use serde::{Serialize, Deserialize};
 
 use diesel::pg::PgConnection;
 use diesel::prelude::*;
+use diesel::result::Error;
 use rocket::form::{ Form };
 use dotenvy::dotenv;
 use std::env;
 use crate::models::{NewPost, Post};
+
 
 #[derive(Serialize, Deserialize)]
 #[serde(crate = "rocket::serde")]
@@ -28,11 +31,16 @@ pub fn create(post: Form<CreatePost<'_>>) -> Json<String> {
 
         let conn = &mut crate::establish_connection();
 
-        diesel::insert_into(posts::table)
+        let result = diesel::insert_into(posts::table)
         .values(&new_post)
-        .get_result::<Post>(conn)
-        .expect("Error saving new post");
+        .get_result::<Post>(conn);
 
-        Json(format!("Title: {}, Writeups: {}", post.title, post.body))
+        let response = match result {
+            Ok(res) => "Post Created Successfully",
+            Err(_) => "Failed to Create A Post",
+        };
+        
+
+        Json(format!("{}", response))
         
 }

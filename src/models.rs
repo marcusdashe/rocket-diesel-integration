@@ -1,3 +1,5 @@
+#![allow(unused)]
+
 use diesel::prelude::*;
 use crate::schema::posts;
 use serde::{Serialize, Deserialize};

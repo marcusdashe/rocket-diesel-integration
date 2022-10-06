@@ -1,3 +1,5 @@
+#![allow(unused)]
+
 use diesel::prelude::*;
 use crate::*;
 

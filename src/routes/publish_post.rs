@@ -1,3 +1,5 @@
+#![allow(unused)]
+
 use rocket::serde::json::Json;
 use serde::{Serialize, Deserialize};
 
