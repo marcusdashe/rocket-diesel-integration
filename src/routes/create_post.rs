@@ -17,10 +17,8 @@ pub struct CreatePost<'a> {
     body: &'a str
 }
 
-
-
 #[post("/create-post", data = "<post>")]
-pub fn create(post: Form<CreatePost<'_>>) -> &'static str {
+pub fn create(post: Form<CreatePost<'_>>) -> Json<String> {
         use crate::schema::posts;
 
         let new_post = NewPost {
@@ -35,7 +33,6 @@ pub fn create(post: Form<CreatePost<'_>>) -> &'static str {
         .get_result::<Post>(conn)
         .expect("Error saving new post");
 
-        // Json("Title: {}, Writeups: {}", post.title, post.body);
-        "Ok"
+        Json(format!("Title: {}, Writeups: {}", post.title, post.body))
         
 }

@@ -9,6 +9,7 @@ pub fn del_post(keyword: &str) -> String {
     let target = keyword;
     let pattern = format!("%{}%", target);
     let conn = &mut crate::establish_connection();
+    
     let num_deleted = diesel::delete(posts.filter(title.like(pattern)))
     .execute(conn)
     .expect("Error deleteing posts");

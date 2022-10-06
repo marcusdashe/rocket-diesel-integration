@@ -5,7 +5,7 @@ use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use crate::models::{Post};
 
-#[get("/publish/<id>")]
+#[put("/publish/<id>")]
 pub fn publish(id: i32)-> Json<Post>{
     use crate::schema::posts::dsl::{posts, published};
     

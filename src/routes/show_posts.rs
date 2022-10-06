@@ -18,5 +18,5 @@ pub fn get_posts()-> Json<Vec<Post>>{
     .expect("Error loading posts");
 
     
-        return Json(results);
+    return Json(results);
 }
